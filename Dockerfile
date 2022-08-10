@@ -17,3 +17,6 @@ COPY requirements.txt .
 
 # install dependencies
 RUN pip install -r requirements.txt
+
+# copy code
+COPY src/ .
