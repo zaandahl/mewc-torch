@@ -10,6 +10,6 @@ pyyaml>=5.3.1
 requests
 seaborn>=0.11.0
 statistics
-tensorflow>=2.0
+tensorflow-gpu>=2.0
 torchvision==0.11.2
 tqdm
