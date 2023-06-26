@@ -1,15 +1,21 @@
-humanfriendly
-jsonpickle
-matplotlib
-numpy
-opencv-python
-pandas
+humanfriendly==10.0
+jsonpickle==3.0.0
+gitpython>=3.1.30
+matplotlib==3.7.1
+numpy==1.23.5
+opencv-python>=4.1.1
+pandas==2.0.1
 piexif
-pillow
-pyyaml>=5.3.1
-requests
-seaborn>=0.11.0
+Pillow==9.1.0
+psutil  # system resources
+PyYAML==6.0
+requests==2.31.0
+scipy>=1.4.1
+seaborn==0.12.2
 statistics
-tensorflow-gpu>=2.0
-torchvision==0.11.2
-tqdm
+tensorflow>=2.0
+thop>=0.1.1  # FLOPs computation
+torch>=1.7.0  # see https://pytorch.org/get-started/locally (recommended)
+torchvision>=0.11.2
+tqdm==4.65.0
+ultralytics>=8.0.111

@@ -1,0 +1,6 @@
+services:
+  app:
+    image: zaandahl/mewc-torch
+    build:
+      context: .
+      dockerfile: ./Dockerfile
