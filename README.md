@@ -1,8 +1,10 @@
+<img src="mewc_logo_hex.png" alt="MEWC Hex Sticker" width="200" align="right"/>
+
 # mewc-torch Docker Image
 
-This repository contains the Dockerfile and docker-compose.yml files used to build the `mewc-torch` Docker image. The `mewc-torch` Docker image serves as the base image for the MegaDetector v5 Docker image.
+This repository contains the Dockerfile and docker-compose.yml files used to build the `mewc-torch` Docker image. The `mewc-torch` Docker image serves as the base image for the `mewc-detect` Docker image.
 
-- [MegaDetector Docker Image Repository](https://github.com/zaandahl/megadetector)
+- [mewc-detect Docker Image Repository](https://github.com/zaandahl/mewc-detect)
 
 The `mewc-torch` image is built on top of the `pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime` image and includes additional dependencies required by MegaDetector v5 and YOLOv5.
 
