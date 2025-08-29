@@ -8,6 +8,32 @@ This repository contains the Dockerfile and docker-compose.yml files used to bui
 
 The `mewc-torch` image is built on top of the `pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime` image and includes additional dependencies required by MegaDetector v5 and YOLOv5.
 
+## MDv5/MDv1000 PyTorch-only Tag
+
+For MDv5/MDv1000 we provide a PyTorch-only base image with explicit pins and no TensorFlow/tensorboard to avoid NumPy 2.x ABI conflicts and import-time stalls.
+
+- Core pins:
+  - NumPy: 1.26.4
+  - OpenCV (headless): 4.8.1.78
+  - PyTorch: 2.0.1 (CUDA 11.7)
+  - TorchVision: 0.15.2
+- Ultralytics: 8.0.123 (installed with `--no-deps`)
+- No TensorFlow/tensorboard in this image.
+
+Build locally with an explicit tag and run a quick import sanity check:
+
+```bash
+docker build -t zaandahl/mewc-torch:py310-cu117-torch2.0.1-no-tf .
+docker run --rm -it zaandahl/mewc-torch:py310-cu117-torch2.0.1-no-tf python - <<'PY'
+import pkgutil, numpy, torch, torchvision, cv2
+print('numpy', numpy.__version__)
+print('torch', torch.__version__, 'cuda', torch.version.cuda)
+print('vision', torchvision.__version__)
+print('cv2', cv2.__version__)
+print('tensorflow_present', bool(pkgutil.find_loader("tensorflow")))
+PY
+```
+
 ## MegaDetector v5
 
 MegaDetector v5 is a version of MegaDetector that utilizes the YOLOv5 neural network for object detection. More information about MegaDetector v5 can be found in its GitHub repositories:
@@ -36,9 +62,9 @@ This will create a Docker image named `zaandahl/mewc-torch`.
 
 The Docker image contains:
 
-- Python environment with the requirements from `requirements.txt` file installed.
+- Python environment isolated in a venv with pinned core packages for MDv5/MDv1000 (see above).
 - Necessary utilities (`ffmpeg`, `libsm6`, `libxext6`, `git`, `wget`) installed.
-- Source code copied into the `/code` directory in the container.
+- Source code copied into the `/code/src` directory in the container.
 
 For detailed information about the image contents, please refer to the Dockerfile in this repository.
 
